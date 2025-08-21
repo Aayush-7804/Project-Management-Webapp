@@ -5,4 +5,13 @@ body{
   height: 100vh;
   margin: 0;
   padding: 0;
+  background-color: var(--mainback);
+  color: var(--secondary);
+}
+
+:root{
+  --primary: #732ee1;
+  --secondary : #d9d9d9;
+  --alternative: #666666;
+  --mainback: #1e1e1e;
 }
