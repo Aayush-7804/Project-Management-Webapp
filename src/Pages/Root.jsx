@@ -6,7 +6,7 @@ export default function Root() {
   return (
     <div>
         <MainNav />
-        <main>
+        <main className='flex h-screen'>
             <Outlet />
         </main>
     </div>

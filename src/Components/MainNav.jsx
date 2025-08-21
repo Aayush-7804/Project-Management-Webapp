@@ -6,7 +6,7 @@ function Button({ children, path, isSelected, onSelect }) {
   return (
     <>
       <li>
-        <Link to={path}>
+        <Link to={path} draggable='false'>
           <button className="px-7 py-2" onClick={onSelect}>
             {children}
           </button>

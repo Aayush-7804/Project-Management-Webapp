@@ -1,7 +1,14 @@
-import React from 'react'
+import React from "react";
+import ListNav from "../Components/ListNav";
+import { Outlet } from "react-router-dom";
 
 export default function ProjectList() {
   return (
-    <div>ProjectList</div>
-  )
+    <>
+      <ListNav />
+      <section className="flex-4/5">
+        <Outlet />
+      </section>
+    </>
+  );
 }
