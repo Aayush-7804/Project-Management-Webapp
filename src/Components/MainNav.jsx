@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {motion} from 'motion/react'
 
 function Button({ children, path, isSelected, onSelect }) {
   return (
@@ -11,7 +12,7 @@ function Button({ children, path, isSelected, onSelect }) {
           </button>
         </Link>
         {isSelected && (
-          <div className="border-b-4 border-[var(--primary)] rounded-t-full" />
+          <motion.div className="border-b-4 border-[var(--primary)] rounded-t-full" layoutId="underline" />
         )}
       </li>
     </>
@@ -21,10 +22,10 @@ export default function MainNav() {
   const [selected, setSelected] = useState(0);
   
   return (
-    <header className="border-b border-[var(--alternative)]">
-      <h1 className="text-4xl">Project Management</h1>
+    <header className="px-10 border-b border-[var(--alternative)]">
+      <h1 className="text-4xl my-5">Project Management</h1>
       <nav>
-        <ul className="flex gap-10">
+        <ul className="flex">
           <Button
             path="project-list"
             isSelected={selected === 0}
