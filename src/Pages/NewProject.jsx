@@ -5,7 +5,7 @@ export default function NewProject() {
   return (
     <div>NewProject
         <Link to='..'><button>Cancel</button></Link>
-        <Link to='..'><button>Save</button></Link>
+        <Link to='/project-list/p1'><button>Save</button></Link>
     </div>
   )
 }

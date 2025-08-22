@@ -7,11 +7,13 @@ body{
   padding: 0;
   background-color: var(--mainback);
   color: var(--secondary);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 :root{
   --primary: #732ee1;
   --secondary : #d9d9d9;
   --alternative: #666666;
+  --alternativeOpacity: #6666668f;
   --mainback: #1e1e1e;
 }

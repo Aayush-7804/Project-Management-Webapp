@@ -1,10 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-function Button({ children, path }) {
+const buttonCss = " w-44 py-2 rounded-lg ";
+const buttonTextEllipsis =
+  " overflow-hidden text-ellipsis [display:-webkit-box] [-webkit-line-clamp:1] [-webkit-box-orient:vertical] ";
+const selectedButtonCss = " bg-[var(--primary)] ";
+const isNotselectedButtonCss = " hover:bg-[var(--alternative)] ";
+
+function Button({ children, path, className, isSelected }) {
   return (
     <Link to={path} draggable="false">
-      <button className="overflow-hidden text-ellipsis [display:-webkit-box] [-webkit-line-clamp:1] [-webkit-box-orient:vertical]">
+      <button
+        className={
+          buttonCss +
+          buttonTextEllipsis +
+          (className ?? undefined) +
+          (isSelected ? selectedButtonCss : isNotselectedButtonCss)
+        }
+      >
         {children}
       </button>
     </Link>
@@ -19,13 +32,22 @@ const DUMMY_DATA = [
 ];
 
 export default function ListNav() {
+  const params = useParams();
+  console.log(params.id);
   return (
     <aside className="flex-1/5 border-r">
-      <ul>
-        <Button path='new'>+ Add New Project</Button>
+      <ul className="flex flex-col items-center my-10 gap-5">
+        <Button
+          path="new"
+          className=" bg-[var(--alternativeOpacity)] hover:bg-[var(--alternative)]"
+        >
+          + Add New Project
+        </Button>
         {DUMMY_DATA.map((project) => (
           <li key={project.id}>
-            <Button path={project.id}>{project.title}</Button>
+            <Button path={project.id} isSelected={project.id === params.id}>
+              {project.title}
+            </Button>
           </li>
         ))}
       </ul>
