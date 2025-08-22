@@ -1,26 +1,36 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import { motion } from "motion/react";
 
 const buttonCss = " w-44 py-2 rounded-lg ";
 const buttonTextEllipsis =
   " overflow-hidden text-ellipsis [display:-webkit-box] [-webkit-line-clamp:1] [-webkit-box-orient:vertical] ";
-const selectedButtonCss = " bg-[var(--primary)] ";
-const isNotselectedButtonCss = " hover:bg-[var(--alternative)] ";
+const selectedButtonCss = " absolute inset-0 bg-[var(--primary)] rounded-lg -z-10 ";
+const isNotselectedButtonCss =
+  " absolute inset-0 hover:bg-[var(--alternative)] ";
 
 function Button({ children, path, className, isSelected }) {
   return (
-    <Link to={path} draggable="false">
-      <button
-        className={
-          buttonCss +
-          buttonTextEllipsis +
-          (className ?? undefined) +
-          (isSelected ? selectedButtonCss : isNotselectedButtonCss)
-        }
-      >
-        {children}
-      </button>
-    </Link>
+    <li>
+      <Link to={path} draggable="false">
+        <div className="relative">
+          {isSelected && (
+            <motion.div
+              layoutId="button-highlight"
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              className={selectedButtonCss}
+            />
+          )}
+          <button
+            className={
+              buttonCss + buttonTextEllipsis + (className ?? undefined)
+            }
+          >
+            {children}
+          </button>
+        </div>
+      </Link>
+    </li>
   );
 }
 
@@ -44,11 +54,13 @@ export default function ListNav() {
           + Add New Project
         </Button>
         {DUMMY_DATA.map((project) => (
-          <li key={project.id}>
-            <Button path={project.id} isSelected={project.id === params.id}>
-              {project.title}
-            </Button>
-          </li>
+          <Button
+            key={project.id}
+            path={project.id}
+            isSelected={project.id === params.id}
+          >
+            {project.title}
+          </Button>
         ))}
       </ul>
     </aside>
